@@ -28,7 +28,7 @@
             <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="index.php">Početna</a></li>
-                <li><a href="">Dodaj novu igricu</a></li>
+                <li><a href="DodajNovuIgricu.php">Dodaj novu igricu</a></li>
                 <li><a href="">Upravljaj igricama</a></li>
             </ul>
             </div>
@@ -68,9 +68,9 @@
 				<div class="col-lg-4">
 					<h4>Adresa</h4>
 					<p>
-          Vojvode Mišića 2 Loznica,<br/>
+						Vojvode Mišića 2,<br/>
 						011 3950800, <br/>
-						Beograd, Srbija.
+						Loznica, Srbija.
 					</p>
 				</div>
 
@@ -88,7 +88,8 @@
 		</div>
     </div>
     
-    
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
     <script>
     function pretraga(){
       $.ajax({
