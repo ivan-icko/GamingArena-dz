@@ -1,20 +1,28 @@
 <?php
- include 'konekcija.php';
-  ?>
+    include 'konekcija.php';
+    include 'IgriceClass.php';
+    include 'ZanrClass.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
     <title>Gaming Arena</title>
 
     <link href="css/bootstrap.css" rel="stylesheet">
 
+
     <link href="css/main.css" rel="stylesheet">
-</head>
-<body>
+
+  </head>
+
+  <body>
     <div class="navbar navbar-inverse navbar-static-top">
         <div class="container">
             <div class="navbar-header">
@@ -39,29 +47,56 @@
 	    <div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 centered">
-					<img src="slike/logo.jpg" alt="pocetna" class="img img-circle">
-                    <h1>U našem gaming centru očekuje Vas high level gameplay! Posetite nas svakog 
-                      radnog dana od 10h do 01h u Vojvode Mišića 2 Loznica.</h1>
-                    <p>Najbolje igrice za Vas.</p>
+					<img src="slike/sony.JPG" alt="pocetna" class="img img-circle">
+                    <h1>Upravljaj igricama</h1>
 				</div>
 			</div>
 	    </div>
     </div>
 
-    <div class="container pt">
-    <label for="pretraga">Pretraži igrice za odabrani žanr</label>
-    <select id="pretraga" onchange="pretraga()" class="form-control">
-      <?php
-          $rez = $conn->query("SELECT * from zanr");
-          while($red = $rez->fetch_assoc()){
-            ?>
-          <option value="<?php echo $red['zanrID'] ?>"> <?php echo $red['nazivZanra'] ?></option>
-        <?php   }
-            ?>
-    </select>
-    <div id="podaciPretraga"></div>
-	</div>
+
+
+	<div class="container pt">
+    <?php
+
+    $niz = [];
+    $rez = $conn->query("select * from igrica i join zanr z on i.zanrID=z.zanrID");
+
+    while($red= $rez->fetch_assoc()){
+      $zanr = new Zanr($red['zanrID'],$red['nazivZanra']);
+      $igrica = new Igrica($red['idIgrice'],$red['nazivIgrice'],$red['verzijaIgrice'], $zanr);
+      array_push($niz,$igrica);
+    }
+    ?>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Naziv igrice</th>
+          <th>Verzija igrice</th>
+          <th>Zanr</th>
+          <th>Obriši</th>
+          <th>Izmeni</th>
+        </tr>
+      </thead>
+      <tbody>
+    <?php
+      foreach($niz as $vrednost){
+        ?>
+            <tr>
+              <td><?php echo $vrednost->nazivIgrice ?>  </td>
+              <td><?php echo $vrednost->verzijaIgrice ?>  </td>
+              <td><?php echo $vrednost->zanr->nazivZanra ?></td>
+              <td><a class="btn btn-danger" href="obrisiIgricu.php?id=<?php echo $vrednost->idIgrice ?>">Obriši</a></td>
+              <td><a class="btn btn-info" href="IzmenaIgrice.php?id=<?php echo $vrednost->idIgrice ?>">Izmeni</a></td>
+            </tr>
+        <?php
+      }
+    ?>
+      </tbody>
+    </table>
     
+	</div>
+
     <div id="footer">
 		<div class="container">
 			<div class="row">
@@ -86,23 +121,9 @@
 			</div>
 
 		</div>
-    </div>
-    
+
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script>
-    function pretraga(){
-      $.ajax({
-        url: "pretragaIgrica.php",
-        data: {zanrID: $("#pretraga").val()},
-        success: function(html){
-          $("#podaciPretraga").html(html);
-        }
-      })
-    }
-    </script>
-    <script>
-        pretraga();
-    </script>
-</body>
+    <script src="js/bootstrap.min.js"></script>
+
+  </body>
 </html>

@@ -12,7 +12,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="index.php">Početna</a></li>
                 <li><a href="DodajNovuIgricu.php">Dodaj novu igricu</a></li>
-                <li><a href="">Upravljaj igricama</a></li>
+                <li><a href="UpravljajIgricama.php">Upravljaj igricama</a></li>
             </ul>
             </div>
         </div>

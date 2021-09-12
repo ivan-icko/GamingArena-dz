@@ -81,9 +81,9 @@
 				<div class="col-lg-4">
 					<h4>Adresa</h4>
 					<p>
-						Jove Ilića 154,<br/>
-						011 3950800, <br/>
-						Beograd, Srbija.
+          Vojvode Mišića 2,<br/>
+						015 8950800, <br/>
+						Loznica, Srbija.
 					</p>
 				</div>
 
