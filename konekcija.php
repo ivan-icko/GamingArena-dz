@@ -4,6 +4,6 @@
   ini_set("log_errors", true);
   ini_set("error_log", "greske.log");
 
-  $conn = new MySqli('localhost', 'root', '','garenadb');
+  $conn = new MySqli('localhost', 'root','','knjigedb');
   $conn->set_charset("utf8");
  ?>

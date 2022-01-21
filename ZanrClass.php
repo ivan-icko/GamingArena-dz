@@ -1,21 +1,27 @@
 <?php
 class Zanr{
-  public $zanrID;
-  public $nazivZanra;
+  public $ZanrId;
+  public $NazivZanra;
 
-  function __construct($zanrID,$nazivZanra) {
-        $this->zanrID = $zanrID;
-        $this->nazivZanra = $nazivZanra;
+  function __construct($ZanrId,$NazivZanra) {
+        $this->ZanrId = $ZanrId;
+        $this->NazivZanra = $NazivZanra;
     }
-
+   
+   
+   
+    public function getIdByName($conn){
+      $query="SELECT  ZanrId from zanrknjige where NazivZanra='Bojanka'";
+      return   $conn->query($query);
+      
+  }
+    
 
     public function save($conn){
-        if($conn->query("INSERT INTO zanr(nazivZanra) VALUES ('$this->nazivZanra')")){
+        if($conn->query("INSERT INTO zanrknjige(NazivZanra) VALUES ('$this->nazivZanra')")){
           return true;
         }else{
           return false;
         }
     }
 }
-
- ?>

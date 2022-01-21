@@ -11,10 +11,14 @@ body {
     -webkit-overflow-scrolling: touch;
 }
 
+#divIdZanra{
+    display: none;
+}
+
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    color: #333;
+    color: black;
 }
 
 h1 {
@@ -156,6 +160,7 @@ a:after {
 	background-color: #f2f2f2;
 }
 
+
 #white {
 	padding-top: 60px;
 	padding-bottom: 60px;
@@ -195,3 +200,49 @@ bt {
 img{
 	width: 500px;
 }
+
+
+
+.prijava-form {
+    width: 100%;
+    border: turquoise;
+    border-radius: 5rem;
+    padding: 15%;
+    background: rgba(160, 62, 129, 0);
+    font-weight: 700;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+div.modal-content, div.container.sir-form {
+    background-image: url("../slike/slika2.jpeg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+}
+
+.row{
+    height: 50px;
+}  
+
+.col-md-4{
+    margin-top: 18px;
+} 
+
+#pregled{
+    margin-left: 200px;
+    margin-right: 200px;
+    background-color: rgba(216, 216, 21, 0.5);
+}
+
+
+.thead{
+    font-size: 20px;
+    text-align: center;
+}
+
+#p{
+	font-size: xx-large;
+}
+

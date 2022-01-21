@@ -1,18 +1,18 @@
 <?php
  include 'konekcija.php';
- include 'IgriceClass.php';
+ include 'KnjigeClass.php';
 
 
  $porukaUspesnosti = "";
 
- if(isset($_POST['sacuvajIgricu'])){
-   $nazivIgrice = trim($_POST['nazivIgrice']);
-   $verzijaIgrice = trim($_POST['verzijaIgrice']);
+ if(isset($_POST['sacuvajKnjigu'])){
+   $nazivKnjige = trim($_POST['nazivKnjige']);
+   $autor = trim($_POST['autor']);
    $zanr = trim($_POST['zanr']);
 
-   $igrica = new Igrica(-1,$nazivIgrice,$verzijaIgrice,$zanr);
-   if($igrica->save($conn)){
-      $porukaUspesnosti = "Uspešno ste uneli novu igricu";
+   $knjiga = new Knjiga(-1,$nazivKnjige,$autor,$zanr);
+   if($knjiga->save($conn)){
+      $porukaUspesnosti = "Uspešno ste uneli novu knjigu";
    }else{
      $porukaUspesnosti = "Nažalost, došlo je od greške, pokušajte ponovo! ";
    }
@@ -27,7 +27,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Gaming Arena</title>
+    <title>Knjiga razbibriga</title>
 
     <link href="css/bootstrap.css" rel="stylesheet">
 
@@ -45,7 +45,7 @@
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 centered">
 					<img src="slike/arena1.jpg" alt="arena" class="img img-circle">
-                    <h1>Dodaj novu igricu</h1>
+                    <h1>Dodaj novu knjigu</h1>
 				</div>
 			</div>
 	    </div>
@@ -55,35 +55,34 @@
 
 	<div class="container pt">
     <form action="" method="POST">
-      <label for="nazivIgrice">Naziv igrice</label>
-      <input type="text" name="nazivIgrice" class="form-control" placehodler="Unesite igricu" required>
-      <label for="verzijaIgrice">Verzija igrice</label>
-      <input type="text" name="verzijaIgrice" class="form-control" placehodler="Unesite verziju igrice" required>
+      <label for="nazivKnjige">Naziv knjigeeeeeeee</label>
+      <input type="text" name="nazivKnjige" class="form-control" placehodler="Unesite knjigu" required>
+      <label for="autor">Autor</label>
+      <input type="text" name="autor" class="form-control" placehodler="Unesite autora knjige" required>
       <label for="zanr">Zanr</label>
       <select id="zanr" name="zanr" class="form-control">
         <?php
-            $rez = $conn->query("SELECT * from zanr");
+            $rez = $conn->query("SELECT * from zanrknjige");
             while($red = $rez->fetch_assoc()){
               ?>
-            <option value="<?php echo $red['zanrID'] ?>"> <?php echo $red['nazivZanra'] ?></option>
+            <option value="<?php echo $red['ZanrId'] ?>"> <?php echo $red['NazivZanra'] ?></option>
           <?php  }
               ?>
       </select>
-      <label for="sacuvajIgricu"></label>
-      <input type="submit" name="sacuvajIgricu" class="form-control btn-primary" value="Sačuvaj igricu">
+      <label for="sacuvajKnjigu"></label>
+      <input id="sacuvajKnjigu" type="submit" name="sacuvajKnjigu" class="form-control btn-primary" value="Sačuvaj knjigu">
   </form>
   <h3><?php echo $porukaUspesnosti ?> </h3>
 	</div>
-
     <div id="footer">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4">
 					<h4>Adresa</h4>
 					<p>
-          Vojvode Mišića 2,<br/>
+          Milana Rakica 77,<br/>
 						015 8950800, <br/>
-						Loznica, Srbija.
+						Beograd, Srbija.
 					</p>
 				</div>
 
@@ -101,6 +100,7 @@
 		</div>
 
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="js/main.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
     <script>
